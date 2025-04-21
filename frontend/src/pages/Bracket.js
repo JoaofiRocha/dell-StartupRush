@@ -51,7 +51,7 @@ function BracketPage() {
     await fetchRounds();
   };
 
-  const CustomSeed = ({ seed, breakpoint }) => {
+  const CustomSeed = ({ seed, breakpoint}) => {
     if (!seed.teams || seed.teams.length < 2) {
       return (
         <Seed>
@@ -66,7 +66,7 @@ function BracketPage() {
 
     const onClick = (battle) => {
       if (battle && !battle.winner) {
-        setSelectedBattle(battle)
+        setSelectedBattle(battle);
       }
     }
 
@@ -75,8 +75,8 @@ function BracketPage() {
       .find(b => b.id === seed.id);
 
     return (
-      <Seed mobileBreakpoint={breakpoint} style={{ fontSize: 15 }}>
-        <SeedItem onClick={() => onClick(battle)} style={{ backgroundColor: 'grey' }}>
+      <Seed mobileBreakpoint={breakpoint} style={{ fontSize: 15}}>
+        <SeedItem onClick={() => onClick(battle) } style={{ backgroundColor: seed.index === currentRound ? 'black' : 'grey'  }}>
           <div>
             <SeedTeam>{seed.teams[0]?.name || " "}</SeedTeam>
             <Divider dashed style={{ width: '2px', borderColor: 'white', margin: 0 }} />
@@ -97,7 +97,8 @@ function BracketPage() {
       if (round.battles.length > 0) {
         seeds = round.battles.map(battle => ({
           id: battle.id,
-          teams: battle.startups.map(s => ({ name: s.name }))
+          teams: battle.startups.map(s => ({ name: s.name })),
+          index: i+1
         }));
       }
       else if (i > 0) {
@@ -123,11 +124,13 @@ function BracketPage() {
         seeds.push({
           id: `placeholder-${i}`,
           teams: [{ name: " " }, { name: " " }],
+          index: i+1
         });
       }
       completeRounds.push({
         title: `Round ${round.id}`,
-        seeds
+        seeds,
+        index: i+1
       });
     }
 

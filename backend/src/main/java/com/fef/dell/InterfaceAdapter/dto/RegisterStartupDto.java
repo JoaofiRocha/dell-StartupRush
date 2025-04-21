@@ -12,5 +12,6 @@ public class RegisterStartupDto {
     private String name;
     private String slogan;
     private String foundationDate;
+    private int id;
 
 }

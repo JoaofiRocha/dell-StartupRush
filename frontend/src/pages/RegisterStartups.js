@@ -26,29 +26,33 @@ function RegisterStartups() {
         method: "POST",
       });
 
-      if (!response.ok) throw new Error("Error to start the competition");
+      console.log(response.status);
+      if (response.status === 500) {
+        throw new Error("There must be 4 or 8 Startups Registered");
+      }
+      else if (!response.ok) throw new Error("Error to start the competition");
 
       navigate("/bracket");
     } catch (err) {
-      alert("Error to start the competition");
+      alert(err.message);
     }
   };
 
   return (
     <div>
     <Row justify="space-around">
-        <Col span={10}>
+        <Col span={11}>
             <h1>Register Startup</h1>
-            <RegisterStartupsForm onRegister={fetchStartups} />
+            <RegisterStartupsForm onRegister={fetchStartups}/>
         </Col>
 
         <div>
             <Divider type='vertical' variant="dotted" style={{width:'2px', height:'100%'}}> </Divider>
         </div>
 
-        <Col span={10}>
+        <Col span={11} style={{ marginTop: "80px" }}>
             <h2>Registered Startups</h2>
-            <ListStartups startups={startups} />
+            <ListStartups startups={startups} onRemove={fetchStartups}/>
         </Col>
     </Row>
     

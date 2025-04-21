@@ -52,13 +52,19 @@ public class Routes {
         return registerStartupUseCase.register(request);
     }
 
+    @PostMapping("/removeStartup/{startupId}")
+    public void remove(@PathVariable int startupId){
+        registerStartupUseCase.remove(startupId);
+    }
+
     //list Startups
     @GetMapping("/startups")
     public List<RegisterStartupDto> getAllStartups() {
         return startupRepository.getAll().stream().map(s -> new RegisterStartupDto(
                         s.getName(),
                         s.getSlogan(),
-                        s.getFoundationYear()
+                        s.getFoundationYear(),
+                        s.getId()
                 ))
                 .collect(Collectors.toList());
     }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Table } from 'antd';
-import { Row, Col, Spin } from 'antd';
+import { Row, Col, Spin, Card , Divider } from 'antd';
 import { useEffect } from 'react';
 
 function EndScreen() {
@@ -61,23 +61,33 @@ function EndScreen() {
 
     return (
         <div>
-            <h1 style={{ margin: "20px" }}> Results </h1>
-            <Row justify="center" style={{ marginTop: "80px" }}>
-                <Col span={10}>
-                    {winner ? (
-                        <div>
-                            <h1>{winner.name} is the Winner</h1>
-                            <h1 style={{fontSize:"50px"}}>"{winner.slogan}"</h1>
-                            <h2>With {winner.points} Points</h2>
-                        </div>
-                    ) : (
-                        <Load/>
-                    )}
-                </Col>
+            <h1 style={{ margin: "30px", marginTop:"30px" , marginLeft:"110px"}}> Results </h1>
+            <Row justify="center" style={{ marginTop: "30px" }}>
 
                 <Col span={10}>
-                    <Table columns={columns} dataSource={table} rowKey="name" size="small" pagination={false} />
+                    <Card>
+                        {winner ? (
+                            <div>
+                                <h1>{winner.name} is the Winner</h1>
+                                <h1 style={{ fontSize: "50px" }}>"{winner.slogan}"</h1>
+                                <h2>With {winner.points} Points</h2>
+                            </div>
+                        ) : (
+                            <Load />
+                        )}
+                    </Card>
                 </Col>
+
+                <div>
+                    <Divider type='vertical' variant="dotted" style={{ width: '2px', height: '100%' }}> </Divider>
+                </div>
+
+                <Col span={10}>
+                    <Card>
+                        <Table columns={columns} dataSource={table} rowKey="name" size="small" pagination={false} />
+                    </Card>
+                </Col>
+
 
             </Row>
         </div>

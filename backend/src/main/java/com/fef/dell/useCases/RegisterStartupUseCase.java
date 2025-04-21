@@ -18,6 +18,7 @@ public class RegisterStartupUseCase {
         if(startupRepository.size() >= 8){
             throw new RuntimeException("There's already 8 Startups registered");
         }
+
         StartupEntity startup = new StartupEntity(startupDto.getName(),startupDto.getSlogan(),startupDto.getFoundationDate());
         startupRepository.add(startup.getId(), startup);
         return startupRepository.getAll();
