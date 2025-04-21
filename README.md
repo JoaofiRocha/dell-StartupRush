@@ -13,7 +13,7 @@ FrontEnd{
 }
 
 BackEnd{
-  1.Carregar o projeto na ide(Utilizei InteliJ)
+  1. Carregar o projeto na ide(Utilizei InteliJ)
 
   2. execute a aplicacao "Dell-it-Academy/backend/src/main/java/com/fef/dell/DellApplication.java"
       com ./mvnw spring-boot:run ou pela propria ide
